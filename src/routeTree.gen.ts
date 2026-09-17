@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as EducationRouteImport } from './routes/education'
+import { Route as FutureMapRouteImport } from './routes/future-map'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,76 @@ const CareersRoute = CareersRouteImport.update({
   path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiscoverRoute = DiscoverRouteImport.update({
   id: '/discover',
   path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EducationRoute = EducationRouteImport.update({
+  id: '/education',
+  path: '/education',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FutureMapRoute = FutureMapRouteImport.update({
+  id: '/future-map',
+  path: '/future-map',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/careers': typeof CareersRoute
+  '/community': typeof CommunityRoute
   '/discover': typeof DiscoverRoute
+  '/education': typeof EducationRoute
+  '/future-map': typeof FutureMapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/careers': typeof CareersRoute
+  '/community': typeof CommunityRoute
   '/discover': typeof DiscoverRoute
+  '/education': typeof EducationRoute
+  '/future-map': typeof FutureMapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/careers': typeof CareersRoute
+  '/community': typeof CommunityRoute
   '/discover': typeof DiscoverRoute
+  '/education': typeof EducationRoute
+  '/future-map': typeof FutureMapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/careers' | '/discover'
+  fullPaths:
+    '/' | '/careers' | '/community' | '/discover' | '/education' | '/future-map'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/careers' | '/discover'
-  id: '__root__' | '/' | '/careers' | '/discover'
+  to:
+    '/' | '/careers' | '/community' | '/discover' | '/education' | '/future-map'
+  id:
+    | '__root__'
+    | '/'
+    | '/careers'
+    | '/community'
+    | '/discover'
+    | '/education'
+    | '/future-map'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CareersRoute: typeof CareersRoute
+  CommunityRoute: typeof CommunityRoute
   DiscoverRoute: typeof DiscoverRoute
+  EducationRoute: typeof EducationRoute
+  FutureMapRoute: typeof FutureMapRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +114,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/discover': {
       id: '/discover'
       path: '/discover'
       fullPath: '/discover'
       preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education': {
+      id: '/education'
+      path: '/education'
+      fullPath: '/education'
+      preLoaderRoute: typeof EducationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/future-map': {
+      id: '/future-map'
+      path: '/future-map'
+      fullPath: '/future-map'
+      preLoaderRoute: typeof FutureMapRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +148,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CareersRoute: CareersRoute,
+  CommunityRoute: CommunityRoute,
   DiscoverRoute: DiscoverRoute,
+  EducationRoute: EducationRoute,
+  FutureMapRoute: FutureMapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
