@@ -1,3 +1,4 @@
+import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -52,6 +53,8 @@ const ROLE_BLURB: Record<string, string> = {
 
 function Dashboard() {
   const { state, update } = useStore();
+  const [greet, setGreet] = React.useState("Welcome back");
+  React.useEffect(() => setGreet(greeting()), []);
   const metrics = progressMetrics(state);
   const today = new Date().toISOString().slice(0, 10);
   const priorityTasks = state.tasks
@@ -67,7 +70,7 @@ function Dashboard() {
   return (
     <div className="space-y-8">
       <PageHeader
-        title={`${greeting()}, ${state.profile.name}!`}
+        title={`${greet}, ${state.profile.name}!`}
         subtitle={`${ROLE_BLURB[state.role]} ${state.profile.grade} · ${state.profile.school}`}
         action={
           <Badge variant="secondary" className="h-8 px-3 text-sm">
@@ -233,8 +236,8 @@ function Dashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm font-semibold">{ANNOUNCEMENTS[0].title}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{ANNOUNCEMENTS[0].body}</p>
+            <p className="text-sm font-semibold">{ANNOUNCEMENTS[0]?.title}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{ANNOUNCEMENTS[0]?.body}</p>
             <Button asChild variant="link" className="mt-2 px-0">
               <Link to="/community">See all community news</Link>
             </Button>

@@ -15,6 +15,9 @@ import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as EducationRouteImport } from './routes/education'
 import { Route as FutureMapRouteImport } from './routes/future-map'
+import { Route as PlannerRouteImport } from './routes/planner'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +49,21 @@ const FutureMapRoute = FutureMapRouteImport.update({
   path: '/future-map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +72,9 @@ export interface FileRoutesByFullPath {
   '/discover': typeof DiscoverRoute
   '/education': typeof EducationRoute
   '/future-map': typeof FutureMapRoute
+  '/planner': typeof PlannerRoute
+  '/profile': typeof ProfileRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +83,9 @@ export interface FileRoutesByTo {
   '/discover': typeof DiscoverRoute
   '/education': typeof EducationRoute
   '/future-map': typeof FutureMapRoute
+  '/planner': typeof PlannerRoute
+  '/profile': typeof ProfileRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,14 +95,33 @@ export interface FileRoutesById {
   '/discover': typeof DiscoverRoute
   '/education': typeof EducationRoute
   '/future-map': typeof FutureMapRoute
+  '/planner': typeof PlannerRoute
+  '/profile': typeof ProfileRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/careers' | '/community' | '/discover' | '/education' | '/future-map'
+    | '/'
+    | '/careers'
+    | '/community'
+    | '/discover'
+    | '/education'
+    | '/future-map'
+    | '/planner'
+    | '/profile'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/careers' | '/community' | '/discover' | '/education' | '/future-map'
+    | '/'
+    | '/careers'
+    | '/community'
+    | '/discover'
+    | '/education'
+    | '/future-map'
+    | '/planner'
+    | '/profile'
+    | '/api/chat'
   id:
     | '__root__'
     | '/'
@@ -87,6 +130,9 @@ export interface FileRouteTypes {
     | '/discover'
     | '/education'
     | '/future-map'
+    | '/planner'
+    | '/profile'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,6 +142,9 @@ export interface RootRouteChildren {
   DiscoverRoute: typeof DiscoverRoute
   EducationRoute: typeof EducationRoute
   FutureMapRoute: typeof FutureMapRoute
+  PlannerRoute: typeof PlannerRoute
+  ProfileRoute: typeof ProfileRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -142,6 +191,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FutureMapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -152,6 +222,9 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoverRoute: DiscoverRoute,
   EducationRoute: EducationRoute,
   FutureMapRoute: FutureMapRoute,
+  PlannerRoute: PlannerRoute,
+  ProfileRoute: ProfileRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
