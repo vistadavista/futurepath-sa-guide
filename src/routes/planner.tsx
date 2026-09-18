@@ -42,7 +42,7 @@ export const Route = createFileRoute("/planner")({
       { property: "og:description", content: "Your study and application to-do list." },
     ],
   }),
-  component: Planner;
+  component: Planner,
 });
 
 function todayISO() {
