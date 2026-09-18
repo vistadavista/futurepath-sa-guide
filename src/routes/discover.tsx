@@ -156,7 +156,7 @@ function Discover() {
                       step={1}
                       value={[value]}
                       onValueChange={(v) =>
-                        update((p) => ({ ...p, skills: { ...p.skills, [s.id]: v[0] } }))
+                        update((p) => ({ ...p, skills: { ...p.skills, [s.id]: v[0] ?? 3 } }))
                       }
                     />
                   </div>
